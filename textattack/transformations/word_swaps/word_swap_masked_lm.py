@@ -291,7 +291,8 @@ class WordSwapMaskedLM(WordSwap):
                     word = word.strip("Ġ")
                     if (
                         word != word_at_index
-                        and re.search("[a-zA-Z]", word)
+                        # and re.search("[a-zA-Z]", word)
+                        and re.search("[\u0600-\u06FF]", word)
                         and len(utils.words_from_text(word)) == 1
                     ):
                         transformed_texts.append(
