@@ -55,10 +55,10 @@ class GeneticAlgorithmAlzantot2018(AttackRecipe):
         # During entailment, we should only edit the hypothesis - keep the premise
         # the same.
         #
-        input_column_modification = InputColumnModification(
-            ["premise", "hypothesis"], {"premise"}
-        )
-        constraints.append(input_column_modification)
+        # input_column_modification = InputColumnModification(
+        #     ["premise", "hypothesis"], {"premise"}
+        # )
+        # constraints.append(input_column_modification)
         #
         # Maximum words perturbed percentage of 20%
         #
@@ -66,17 +66,17 @@ class GeneticAlgorithmAlzantot2018(AttackRecipe):
         #
         # Maximum word embedding euclidean distance of 0.5.
         #
-        constraints.append(
-            WordEmbeddingDistance(max_mse_dist=0.5, compare_against_original=False)
-        )
-        #
-        # Language Model
-        #
-        constraints.append(
-            Google1BillionWordsLanguageModel(
-                top_n_per_index=4, compare_against_original=False
-            )
-        )
+        # constraints.append(
+        #     WordEmbeddingDistance(max_mse_dist=0.5, compare_against_original=False)
+        # )
+        # #
+        # # Language Model
+        # #
+        # constraints.append(
+        #     Google1BillionWordsLanguageModel(
+        #         top_n_per_index=4, compare_against_original=False
+        #     )
+        # )
         #
         # Goal is untargeted classification
         #
@@ -85,7 +85,7 @@ class GeneticAlgorithmAlzantot2018(AttackRecipe):
         # Perform word substitution with a genetic algorithm.
         #
         search_method = AlzantotGeneticAlgorithm(
-            pop_size=60, max_iters=20, post_crossover_check=False
+            pop_size=5, max_iters=20, post_crossover_check=False
         )
 
         return Attack(goal_function, constraints, transformation, search_method)
